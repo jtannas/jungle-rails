@@ -26,6 +26,30 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="col-sm-12">
+        <h2>Reviews</h2>
+        <% @product.reviews.each do |review| %>
+          <dl class="dl-horizontal">
+            <dt>Rating</dt>
+            <dd>
+              <% for counter in 1..review.rating %>
+
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+              <% end %>
+              <% for counter in review.rating...5 %>
+                <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+              <% end %>
+            </dd>
+            <dt>Reviewer</dt>
+            <dd><%= review.user.name %></dd>
+            <dt>Description</dt>
+            <dd><%= review.description %></dd>
+          </dl>
+        <% end %>
+      </div>
+    </div>
+
   </article>
 
 </section>
