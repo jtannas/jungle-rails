@@ -35,7 +35,7 @@ puts "Re-creating Products ..."
 
 Product.destroy_all
 
-cat1.products.create!({
+product1 = cat1.products.create!({
   name:  'Men\'s Classy shirt',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel1.jpg'),
@@ -43,7 +43,7 @@ cat1.products.create!({
   price: 64.99
 })
 
-cat1.products.create!({
+product2 = cat1.products.create!({
   name:  'Women\'s Zebra pants',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel2.jpg'),
@@ -132,5 +132,72 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+## USERS
+
+puts "Re-creating Users"
+
+user1 = User.create!({
+  name: 'Sir Tim Berners-Lee',
+  email: 'tblee@inter.net',
+  password_digest: BCrypt::Password.create('internet')
+})
+
+user2 = User.create!({
+  name: 'Sir Isaac Newton',
+  email: 'inewton@cambridge.co.uk',
+  password_digest: BCrypt::Password.create('gravity')
+})
+
+user3 = User.create!({
+  name: 'Bertrand Russell',
+  email: 'brussell@exist.phd',
+  password_digest: BCrypt::Password.create('philosphy')
+})
+
+## REVIEWS
+
+puts "Re-creating Reviews"
+
+Review.create!({
+  user_id: user1.id,
+  product_id: product1.id,
+  rating: 5,
+  description: 'This is what I inveted the internet for!'
+})
+
+Review.create!({
+  user_id: user2.id,
+  product_id: product1.id,
+  rating: 5,
+  description: 'Better than gravity!'
+})
+
+Review.create!({
+  user_id: user3.id,
+  product_id: product1.id,
+  rating: 3,
+  description: 'I exist, therefore I give 3 stars'
+})
+
+Review.create!({
+  user_id: user1.id,
+  product_id: product2.id,
+  rating: 2,
+  description: "Zebras don't belong on the internet"
+})
+
+Review.create!({
+  user_id: user2.id,
+  product_id: product1.id,
+  rating: 3,
+  description: 'Comfortable, but poor camouflage vs. undergrads'
+})
+
+Review.create!({
+  user_id: user3.id,
+  product_id: product1.id,
+  rating: 5,
+  description: 'Zebralicious!'
+})
 
 puts "DONE!"
