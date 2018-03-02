@@ -188,14 +188,14 @@ Review.create!({
 
 Review.create!({
   user_id: user2.id,
-  product_id: product1.id,
+  product_id: product2.id,
   rating: 3,
   description: 'Comfortable, but poor camouflage vs. undergrads'
 })
 
 Review.create!({
   user_id: user3.id,
-  product_id: product1.id,
+  product_id: product2.id,
   rating: 5,
   description: 'Zebralicious!'
 })
