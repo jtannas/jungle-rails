@@ -26,6 +26,7 @@
       </div>
     </div>
 
+    <!-- Display the new review form -->
     <div class="row">
       <h2>Reviews</h2>
       <% if current_user %>
@@ -33,7 +34,7 @@
           <%= form_for([@product, Review.new]) do |f| %>
             <dl class="dl-horizontal">
               <dt><%= label_tag(:rating, "Rating") %></dt>
-              <dd><%= f.select :rating, 0..5 %></dd>
+              <dd><%= f.select :rating, 1..5 %></dd>
               <dt><%= label_tag(:description, "Description") %></dt>
               <dd><%= f.text_area :description, :required => true %></dd>
               <dt>Submit Review</dt>
@@ -42,6 +43,8 @@
           <% end %>
         </div>
       <% end %>
+
+      <!-- Display a list of reviews -->
       <div class="col-sm-12">
         <% @product.reviews.order(id: :desc).each do |review| %>
           <dl class="dl-horizontal">
@@ -59,6 +62,10 @@
             <dd><%= review.user.name %></dd>
             <dt>Description</dt>
             <dd><%= review.description %></dd>
+            <% if review.user == current_user %>
+              <dt>Delete</dt>
+              <dd><%= button_to "delete", product_review_path(:product_id => @product.id, :id => review.id), :method => :delete %></dd>
+            <% end %>
           </dl>
         <% end %>
       </div>

@@ -6,7 +6,17 @@ class ReviewsController < ApplicationController
     if review.save
       redirect_to :back
     else
-      render :back
+      redirect_to product_path(id: params[:product_id])
+    end
+  end
+
+  def destroy
+    review = Review.find(params[:id])
+    if review.user_id == current_user.id
+      review.destroy
+      redirect_to :back
+    else
+      redirect_to product_path(id: params[:product_id])
     end
   end
 
