@@ -104,4 +104,46 @@ RSpec.describe User, type: :model do
       user1.destroy
     end
   end
+
+  describe '.authenticate_with_credentials' do
+    before(:each) do
+      @user = User.new({
+        :name => 'test_name',
+        :email => 'test@test.com',
+        :password => 'testtest',
+        :password_confirmation => 'testtest'
+      })
+      @user.save!  # cause failure if any errors
+    end
+
+    after(:each) do
+      @user.destroy
+      remove_instance_variable(:@user)
+    end
+
+    it 'should return a user when given the correct credentials' do
+      user = User.authenticate_with_credentials(@user.email, 'testtest')
+      expect(user).to eq(@user)
+    end
+
+    it 'should return nil when given the incorrect credentials' do
+      user = User.authenticate_with_credentials(@user.email, 'no match')
+      expect(user).to be_nil
+    end
+
+    it 'should return nil when missing credentials' do
+      user = User.authenticate_with_credentials(nil, nil)
+      expect(user).to be_nil
+    end
+
+    it 'should succeed with a padded emails' do
+      user = User.authenticate_with_credentials('    ' + @user.email, 'testtest')
+      expect(user).to eq(@user)
+    end
+
+    it 'should succeed with incorrect case email' do
+      user = User.authenticate_with_credentials(@user.email.upcase, 'testtest')
+      expect(user).to eq(@user)
+    end
+  end
 end

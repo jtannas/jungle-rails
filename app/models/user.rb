@@ -15,4 +15,13 @@ class User < ActiveRecord::Base
     length: { minimum: 8 }
   has_secure_password
 
+  def self.authenticate_with_credentials(email, password)
+    user = User.where("lower(email) = ?", email.strip.downcase).first unless email == nil
+    # If the user exists AND the password entered is correct.
+    if user && user.authenticate(password)
+      user
+    else
+      nil
+    end
+  end
 end
