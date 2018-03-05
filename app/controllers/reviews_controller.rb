@@ -1,12 +1,8 @@
-require 'pp'
-
 class ReviewsController < ApplicationController
   before_filter :has_user
 
   def create
-    pp review_params
     review = current_user.reviews.create(review_params)
-    pp review
     if review.save
       redirect_to :back
     else
