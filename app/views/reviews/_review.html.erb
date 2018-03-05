@@ -1,0 +1,20 @@
+<dl class="dl-horizontal">
+  <dt>Rating</dt>
+  <dd>
+    <% for counter in 1..review.rating %>
+
+      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+    <% end %>
+    <% for counter in review.rating...5 %>
+      <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+    <% end %>
+  </dd>
+  <dt>Reviewer</dt>
+  <dd><%= review.user.name %></dd>
+  <dt>Description</dt>
+  <dd><%= review.description %></dd>
+  <% if review.user == current_user %>
+    <dt>Delete</dt>
+    <dd><%= button_to "delete", product_review_path(:product_id => @product.id, :id => review.id), :method => :delete %></dd>
+  <% end %>
+</dl>

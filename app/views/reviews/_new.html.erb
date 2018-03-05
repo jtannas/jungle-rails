@@ -1,0 +1,12 @@
+<div class="col-sm-12">
+  <%= form_for([@product, Review.new]) do |f| %>
+    <dl class="dl-horizontal">
+      <dt><%= label_tag(:rating, "Rating") %></dt>
+      <dd><%= f.select :rating, 1..5 %></dd>
+      <dt><%= label_tag(:description, "Description") %></dt>
+      <dd><%= f.text_area :description, :required => true %></dd>
+      <dt>Submit Review</dt>
+      <dd><%= f.submit "Submit" %></dd>
+    </dl>
+  <% end %>
+</div>
