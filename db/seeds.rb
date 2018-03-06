@@ -139,19 +139,22 @@ puts "Re-creating Users"
 user1 = User.create!({
   name: 'Sir Tim Berners-Lee',
   email: 'tblee@inter.net',
-  password_digest: BCrypt::Password.create('internet')
+  password: 'internet',
+  password_confirmation: 'internet'
 })
 
 user2 = User.create!({
   name: 'Sir Isaac Newton',
   email: 'inewton@cambridge.co.uk',
-  password_digest: BCrypt::Password.create('gravityApple')
+  password: 'gravityApple',
+  password_confirmation: 'gravityApple'
 })
 
 user3 = User.create!({
   name: 'Bertrand Russell',
   email: 'brussell@exist.phd',
-  password_digest: BCrypt::Password.create('philosphy')
+  password: 'philosphy',
+  password_confirmation: 'philosphy'
 })
 
 ## REVIEWS
