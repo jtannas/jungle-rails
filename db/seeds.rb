@@ -145,7 +145,7 @@ user1 = User.create!({
 user2 = User.create!({
   name: 'Sir Isaac Newton',
   email: 'inewton@cambridge.co.uk',
-  password_digest: BCrypt::Password.create('gravity')
+  password_digest: BCrypt::Password.create('gravityApple')
 })
 
 user3 = User.create!({
