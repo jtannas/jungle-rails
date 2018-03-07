@@ -1,14 +1,18 @@
 class Admin::CategoriesController < AdminController
+  # Controller for administering the available categories
 
   def index
+    # List the available categories
     @categories = Category.order(id: :asc).all
   end
 
   def new
+    # Show the new category form
     @category = Category.new
   end
 
   def create
+    # Create and save a new category (if valid)
     @category = Category.new(category_params)
 
     if @category.save
@@ -20,6 +24,7 @@ class Admin::CategoriesController < AdminController
 
   private
     def category_params
+      # List of required and permitted category fields
       params.require(:category).permit(
         :name
       )
