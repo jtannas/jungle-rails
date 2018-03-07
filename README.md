@@ -39,3 +39,9 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 - Feature: Product Ratings
 - Feature: Model Testing
 - Feature: Heroku Deployment
+- Feature: Inventory Deductions & Testing
+- Feature: Home Page Headless Browser Testing
+- Feature: Headless Browser Testing Setup
+- Feature: Product Details Link Headless Browser Testing
+- Feature: Add-to-Cart Headless Browser Testing
+- Feature: User Login Headless Browser Testing
